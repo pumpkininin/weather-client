@@ -10,7 +10,8 @@ const humidity = document.querySelector(".humidity")
 const windDirection = document.querySelector(".wind-dir")
 const windSpeed = document.querySelector(".wind-kph")
 const input = document.querySelector("input");
-
+const btnNext = document.querySelector(".btn-next")
+const btnPrev = document.querySelector(".btn-prev")
 
 
 composeDate = (date) => {
@@ -30,7 +31,18 @@ input.addEventListener("keyup", (evt) => {
         updateWeatherInfo(keyword)
     }
 })
-
+btnNext.addEventListener("click", (evt) => {
+    var nextDay = new Date(currentDay);
+    nextDay.setDate(nextDay.getDate() + 1);
+    nextDay = composeDate(nextDay)
+    updateWeatherInfo(keyword, nextDay, currentHour);
+})
+btnPrev.addEventListener("click", (evt) => {
+    var prevDay = new Date(currentDay);
+    prevDay.setDate(prevDay.getDate() - 1 );
+    prevDay = composeDate(prevDay)
+    updateWeatherInfo(keyword, prevDay, currentHour);
+})
 getForecastInfo = async (keyword) => {
     const options = {
         method: 'GET',
@@ -56,9 +68,8 @@ getHistoryInfo = async (keyword, date) => {
 
     return response.json();
 }
-updateWeatherInfo = (keyword, day = currentDay, hour = today.getHours()) => {
+updateWeatherInfo = (keyword = keyword, day = currentDay, hour = today.getHours()) => {
     dateDiff = Number(day.substring(7)) - Number(currentDay.substring(7))
-    console.log(dateDiff)
     if(dateDiff >= 0){
         res = getForecastInfo(keyword)
         .then(res => {
@@ -91,6 +102,7 @@ updateWeatherInfo = (keyword, day = currentDay, hour = today.getHours()) => {
         e.childNodes[1].innerHTML = day.substring(2)
         e.childNodes[1].className = day
     })
+    currentDay = day
 }
 updateDayInWeek = () => {
     const dayInWeek = document.querySelectorAll(".day-in-week");
