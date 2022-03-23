@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="weather.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- <nav class="navbar navbar-light bg-light justify-content-between p-4"  style="background-color: transparent !important; ">
+        <a class="navbar-menu"><i class="fa-solid fa-bars fa-2xl"></i></a>
+        <a><i class="fas fa-user-circle fa-2xl" style="color: #C4C4C4;"></i></a>
+    </nav> -->
+    <div class="search-bar d-flex justify-content-center mb-3">
+        <input class="p-3" type="text" placeholder="City, Place or Country...">
+    </div>
+    <div class="mx-5">
+        <!-- <div class="breadcrumb" style="background-color: transparent;">
+            <a href="/homepage.html">HOMEPAGE | </a><a style="color: white;"> Movie title</a>
+        </div> -->
+        <div class="movie-info-section row mx-3 mb-5">
+            <div class="poster-holder pr-3 col-md-6 my-3 d-md-block d-none" >
+                <img src="image/weather-gif-1.gif" alt="">
+            </div>
+            <div class="movie-info my-5 col-md-6 col-12 d-flex flex-column justify-content-md-around justify-content-center text-center text-md-left" style="color: white;">
+                <h2 class="mt-5 city-name">Movie title</h2>
+                <p class="mb-3 country-name">country-name</p>
+                <p class="my-3">Weather condition: <strong class="condition"></strong> <img src="" alt="" class="icon"></p>
+                <p class="my-2 ">Temperature (F): <strong class="temp-f">12</strong> </p>
+                <p class="my-2">Temperature (C): <strong class="temp-c"></strong> </p>                
+                <p class="my-2">Wind direction: <strong class="wind-dir"></strong></p>
+                <p class="my-2">Wind speed: <strong class="wind-kph"></strong> (KPh)</p>
+                <p class="my-2">Humidity: <strong class="humidity"></strong></p>
+                <div class="my-5 buttons d-flex flex-row justify-content-between">
+                    <button class="p-4 movie-btn">Prev day</button>
+                    <button class="p-4 movie-btn" >Next day</button>
+                </div>
+            </div>
+        </div>
+        <div class="time-line d-flex flex-column justify-content-center mt-5">
+            <div>
+                <h1 style="color: white; text-align: center; border-bottom: #C4C4C4 2px solid;">Hourly</h1>
+            </div>
+            <div class="time-line--hour d-flex flex-row overflow-auto">
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="hour-item hour-in-day m-2">
+                    <p>15:00</p>
+                    <p>21/3/22</p>
+                </div>
+            </div>
+        </div>
+        <div class="time-line d-flex flex-column justify-content-center mt-5 pb-5">
+            <div>
+                <h1 style="color: white; text-align: center; border-bottom: #C4C4C4 2px solid;">Weekly</h1>
+            </div>
+            <div class="time-line--week d-flex flex-row justify-content-around row">
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-1 day-in-week">
+                    <p>Monday</p>
+                    <p>21/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-2 day-in-week">
+                    <p>Tuesday</p>
+                    <p>22/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-3 day-in-week">
+                    <p>Wednesday</p>
+                    <p>23/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-4 day-in-week">
+                    <p>Thursday</p>
+                    <p>24/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-5 day-in-week">
+                    <p>Friday</p>
+                    <p>25/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-6 day-in-week">
+                    <p>Saturday</p>
+                    <p>26/3/22</p>
+                </div>
+                <div class="date-item p-2 col-6 col-sm-4 col-md-4 col-xl-1 day-7 day-in-week">
+                    <p>Sunday</p>
+                    <p>27/3/22</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<style>
+    .carousel-indicators{
+        position: absolute;
+        bottom: -60px !important;
+    }
+    .carousel-indicators li {
+        width: 15px !important;
+        height: 15px !important;
+        border-radius: 100% !important;
+    }
+</style>
+</html>
