@@ -23,7 +23,7 @@ let today = new Date();
 let currentDay = composeDate(today);
 let currentHour = today.getHours();
 let keyword = "hanoi";
-
+let count = 0;
 
 input.addEventListener("keyup", (evt) => {
     if(evt.key === 'Enter'){
@@ -32,16 +32,34 @@ input.addEventListener("keyup", (evt) => {
     }
 })
 btnNext.addEventListener("click", (evt) => {
+    count++;
     var nextDay = new Date(currentDay);
-    nextDay.setDate(nextDay.getDate() + 1);
+    nextDay.setDate(nextDay.getDate() + count);
     nextDay = composeDate(nextDay)
     updateWeatherInfo(keyword, nextDay, currentHour);
+    document.querySelectorAll('.active').forEach(e => e.classList.remove("active"));
+    document.getElementsByClassName(nextDay)[currentHour].parentElement.classList.add("active")
+    document.querySelectorAll('.day-in-week ').forEach(e => {
+        child = e.getElementsByClassName(nextDay)
+        if(child.length == 1){
+            e.classList.add("active")
+        }
+    })
 })
 btnPrev.addEventListener("click", (evt) => {
+    count --;
     var prevDay = new Date(currentDay);
-    prevDay.setDate(prevDay.getDate() - 1 );
+    prevDay.setDate(prevDay.getDate() + count );
     prevDay = composeDate(prevDay)
     updateWeatherInfo(keyword, prevDay, currentHour);
+    document.querySelectorAll('.active').forEach(e => e.classList.remove("active"));
+    document.getElementsByClassName(prevDay)[currentHour].parentElement.classList.add("active")
+    document.querySelectorAll('.day-in-week ').forEach(e => {
+        child = e.getElementsByClassName(prevDay)
+        if(child.length == 1){
+            e.classList.add("active")
+        }
+    })
 })
 getForecastInfo = async (keyword) => {
     const options = {
@@ -73,8 +91,8 @@ updateWeatherInfo = (keyword = keyword, day = currentDay, hour = today.getHours(
     if(dateDiff >= 0){
         res = getForecastInfo(keyword)
         .then(res => {
-            cityName.innerHTML = res.location.name;
-            countryName.innerHTML = res.location.country;
+            cityName.innerHTML = res.location.name ;
+            countryName.innerHTML = res.location.country ;
             condition.innerHTML =  res.forecast.forecastday[dateDiff].hour[hour].condition.text;
             icon.src = res.forecast.forecastday[dateDiff].hour[hour].condition.icon;
             tempF.innerHTML = res.forecast.forecastday[dateDiff].hour[hour].temp_f;
@@ -102,7 +120,14 @@ updateWeatherInfo = (keyword = keyword, day = currentDay, hour = today.getHours(
         e.childNodes[1].innerHTML = day.substring(2)
         e.childNodes[1].className = day
     })
-    currentDay = day
+    if(count >= 2){
+        btnNext.disabled = true
+    }else if(count <= -7){
+        btnPrev.disabled = true
+    }else{
+        btnNext.disabled = false
+        btnPrev.disabled = false
+    }
 }
 updateDayInWeek = () => {
     const dayInWeek = document.querySelectorAll(".day-in-week");
