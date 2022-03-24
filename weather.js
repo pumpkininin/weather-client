@@ -1,4 +1,4 @@
-const GOOGLE_API_KEY = "";
+//define variable
 const OPEN_WEATHER_API_KEY = "ca6df66beamsha1d205404841071p1be2b2jsn4193e54a4c9d"
 const cityName = document.querySelector(".city-name");
 const countryName = document.querySelector(".country-name");
@@ -13,24 +13,26 @@ const input = document.querySelector("input");
 const btnNext = document.querySelector(".btn-next")
 const btnPrev = document.querySelector(".btn-prev")
 
-
+//format date in form yyyy/MM/dd
 composeDate = (date) => {
     return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate();
 }
 
-
+//get current time
 let today = new Date();
 let currentDay = composeDate(today);
 let currentHour = today.getHours();
 let keyword = "hanoi";
 let count = 0;
 
+//add search event for input
 input.addEventListener("keyup", (evt) => {
     if(evt.key === 'Enter'){
         keyword = evt.target.value;
         updateWeatherInfo(keyword)
     }
 })
+//add event for btn Next
 btnNext.addEventListener("click", (evt) => {
     count++;
     var nextDay = new Date(currentDay);
@@ -46,6 +48,7 @@ btnNext.addEventListener("click", (evt) => {
         }
     })
 })
+//add event for btn Prev
 btnPrev.addEventListener("click", (evt) => {
     count --;
     var prevDay = new Date(currentDay);
@@ -61,6 +64,7 @@ btnPrev.addEventListener("click", (evt) => {
         }
     })
 })
+//get forcast data in next 3 days
 getForecastInfo = async (keyword) => {
     const options = {
         method: 'GET',
@@ -70,9 +74,10 @@ getForecastInfo = async (keyword) => {
         }
     };
     
-    response = await fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${keyword}&days=14`, options)
+    response = await fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${keyword}&days=14`, options)//fetch data
     return response.json();
 }
+//get history weather data
 getHistoryInfo = async (keyword, date) => {
     const options = {
         method: 'GET',
@@ -86,6 +91,10 @@ getHistoryInfo = async (keyword, date) => {
 
     return response.json();
 }
+//update GUI by 3 params
+//keyword - search keyword (city, place, country)
+//day - to get data for specific day (current day as default value)
+//hour - to get data for specific hour (current hour as default value)
 updateWeatherInfo = (keyword = keyword, day = currentDay, hour = today.getHours()) => {
     dateDiff = Number(day.substring(7)) - Number(currentDay.substring(7))
     if(dateDiff >= 0){
